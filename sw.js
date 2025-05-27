@@ -20,7 +20,7 @@ const VERSION = "1.01"
 /**
  * Nombre de la carpeta de caché.
  */
-const CACHE = "pwamd"
+const CACHE = "pwamd3"
 
 /**
  * Archivos requeridos para que la aplicación funcione fuera de
