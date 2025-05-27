@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" class="light dark">
+
+<head>
+
+ <meta charset="UTF-8">
+ <title>PWA con MD</title>
+
+ <!-- Resumen para los motores de búsqueda. -->
+ <meta name="description" content="Ejemplo de PWA con Material Design">
+
+ <script src="js/registraServiceWorker.js"></script>
+
+ <meta name="viewport" content="width=device-width">
+
+ <!-- Color de la barra de navegación de Chrome en dispositivos móviles. -->
+ <meta name="theme-color" content="#fffbfe">
+
+ <!-- Ícono para la página web, que normalmente se pone en la raíz del sitio.
+  Puede ser diferente para cada página. -->
+ <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico">
+
+ <!-- Configuración de la PWA para Chrome, Edge y Safari.
+  Debe ponerse en todas las páginas. -->
+ <link rel="manifest" href="site.webmanifest">
+
+ <!-- Permite a los navegadores, que como Safari no soportan el estándar
+  completo de custom elementsm, lo cumplan totalmente. Debe ponerse en todas
+  las páginas. -->
+ <script src="ungap/custom-elements.js"></script>
+
+ <!-- Configuración de todas las páginas con JavaSript. -->
+ <script src="js/configura.js"></script>
+ <link rel="stylesheet" href="css/estilos.css">
+ <link rel="stylesheet" href="css/transicion_completa.css">
+
+</head>
+
+<body>
+ <md-top-app-bar class="center-aligned">
+  <center>
+    <div id="formulario">
+      <h1>PWA con MD</h1>
+      <a id="ayudaLink" href="ayuda.html">Ayuda</a>
+      <form>
+        <label class="formLabel" for="integrante"> Integrante: </label>
+        <select id="nombreIntegrante" name="integrante">
+          <option value=""> -- </option>
+          <option value="Abigail">Martinez Resendiz Dierene Abigail</option>
+          <option value="Sherley">Mendoza Garcia Sherley Lizeth</option>
+          <option value="Ulises">Mercado Soto Ulises</option>
+          <option value="Aldair">Rivera Cortes Ivan Aldair</option>
+          <option value="Sebastián">Santiago Pérez Sebastián</option>
+          <option value="Evelin">Torres Cruz Evelin</option>
+        </select>
+        <br>
+        <button type="button" id="botonSubmit" onclick="mostrarChiste()"> Chiste aportado </button>
+      </form>
+    </div>
+  </center>
+
+ </md-top-app-bar>
+</body>
+
+</html>
