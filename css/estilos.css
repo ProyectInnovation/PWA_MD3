@@ -1,0 +1,74 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#formulario {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.formLabel {
+    margin: 10px;
+}
+
+#nombreIntegrante {
+    margin: 10px;
+    border-radius: 4px;
+    height: 25px;
+    width: 30%;
+}
+
+#botonSubmit {
+    cursor: pointer;
+    background-color: white;
+    border-radius: 4px;
+    border: solid 1px gray;
+    padding: 1%;
+}
+
+#botonSubmit:hover {
+    transition: all ease-in-out 0.15s;
+    background-color: rgb(4, 87, 87);
+    color: white;
+}
+
+#divAyuda {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+#ayudaLink {
+    display: block;
+    text-align: right;
+    margin-bottom: 3%;
+    margin-right: 1%;
+}
+
+#linkAtras {
+    display: block;
+    text-align: right;
+}
+
+#divAyuda p {
+    margin-bottom: 5px;
+    margin-left: 5%;
+}
+
+#divAyuda hr{
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
