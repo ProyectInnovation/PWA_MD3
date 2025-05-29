@@ -4,62 +4,119 @@
 <head>
 
  <meta charset="UTF-8">
- <title>PWA con MD</title>
-
- <!-- Resumen para los motores de búsqueda. -->
- <meta name="description" content="Ejemplo de PWA con Material Design">
+ <title>Formulario - PWA con MD</title>
 
  <script src="js/registraServiceWorker.js"></script>
 
  <meta name="viewport" content="width=device-width">
-
- <!-- Color de la barra de navegación de Chrome en dispositivos móviles. -->
  <meta name="theme-color" content="#fffbfe">
-
- <!-- Ícono para la página web, que normalmente se pone en la raíz del sitio.
-  Puede ser diferente para cada página. -->
- <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico">
-
- <!-- Configuración de la PWA para Chrome, Edge y Safari.
-  Debe ponerse en todas las páginas. -->
+ <link rel="icon" sizes="32x32" href="favicon.ico">
  <link rel="manifest" href="site.webmanifest">
-
- <!-- Permite a los navegadores, que como Safari no soportan el estándar
-  completo de custom elementsm, lo cumplan totalmente. Debe ponerse en todas
-  las páginas. -->
  <script src="ungap/custom-elements.js"></script>
 
- <!-- Configuración de todas las páginas con JavaSript. -->
- <script src="js/configura.js"></script>
+ <script type="module" src="js/configura.js"></script>
  <link rel="stylesheet" href="css/estilos.css">
  <link rel="stylesheet" href="css/transicion_completa.css">
 
 </head>
 
 <body>
- <md-top-app-bar class="center-aligned">
-  <center>
-    <div id="formulario">
-      <h1>PWA con MD</h1>
-      <a id="ayudaLink" href="ayuda.html">Ayuda</a>
-      <form>
-        <p class="formLabel"> Integrante: </p>
-        <select id="nombreIntegrante" name="integrante">
-          <option value=""> -- </option>
-          <option value="Abigail">Martinez Resendiz Dierene Abigail</option>
-          <option value="Sherley">Mendoza Garcia Sherley Lizeth</option>
-          <option value="Ulises">Mercado Soto Ulises</option>
-          <option value="Aldair">Rivera Cortes Ivan Aldair</option>
-          <option value="Sebastián">Santiago Pérez Sebastián</option>
-          <option value="Evelin">Torres Cruz Evelin</option>
-        </select>
-        <br>
-        <button type="button" id="botonSubmit" onclick="mostrarChiste()"> Chiste aportado </button>
-      </form>
-    </div>
-  </center>
 
- </md-top-app-bar>
+ <form id="form" novalidate onsubmit="procesa(event)">
+
+  <md-top-app-bar>
+
+   <h1>Formulario</h1>
+
+  </md-top-app-bar>
+
+  <nav-tab-fixed id="tab"></nav-tab-fixed>
+
+  <main>
+
+   <p>
+    <span class="md-filled-text-field" accesskey="G">
+     <md-select-menu id="selectGenero" required options="opcionesDeGenero"
+       oninput="copiaMensajes()"></md-select-menu>
+     <span>Integrante *</span>
+     <small id="supportingGenero">Obligatorio</small>
+    </span>
+   </p>
+
+   <p>
+    <button class="md-filled-button" style="width: 100%;">Chiste aportado</button>
+   </p>
+
+  </main>
+
+  <md-options-menu id="opcionesDeGenero" aria-label="Opciones de género">
+   <span data-value="" title="Selecciona un integrante"></span>
+   <span data-value="Abigail">Martinez Resendiz Dierene Abigail</span>
+   <span data-value="Sherley">Mendoza Garcia Sherley Lizeth</span>
+   <span data-value="Ulises">Mercado Soto Ulises</span>
+   <span data-value="Aldair">Rivera Cortes Ivan Aldair</span>
+   <span data-value="Sebastián">Santiago Pérez Sebastián</span>
+   <span data-value="Evelin">Torres Cruz Evelin</span>
+  </md-options-menu>
+
+  <nav-drw></nav-drw>
+
+ </form>
+
+ <script type="module">
+  import { muestraTextoDeAyuda } from "./lib/js/muestraTextoDeAyuda.js"
+  import { exportaAHtml } from "./lib/js/exportaAHtml.js"
+  import { muestraError } from "./lib/js/muestraError.js"
+
+  function copiaMensajes() {
+   muestraTextoDeAyuda(selectGenero, supportingGenero, "Obligatorio")
+  }
+  exportaAHtml(copiaMensajes)
+
+  /**
+   * @param {SubmitEvent} evt
+   */
+  function procesa(evt) {
+   evt.preventDefault()
+   try {
+    copiaMensajes()
+    if (
+     selectGenero.validity.valid) {
+     const genero = selectGenero.value
+     const resultado = recomienda(genero)
+     alert(resultado)
+    }
+   } catch (e) {
+    muestraError(e)
+   }
+  }
+  exportaAHtml(procesa)
+
+  /** @param {string} genero */
+  function recomienda(genero) {
+   switch (genero) {
+            case 'Abigail':
+                return "Chiste: ¿Qué hace una abeja en el gimnasio? ¡Zumba!";
+                break;
+            case 'Sherley':
+                return "Chiste: ¿Cuál es el colmo de un electricista? Que su mujer se llame Luz y sus hijos le sigan la corriente.";
+                break;
+            case 'Ulises':
+                return "Chiste: ¿Qué le dice un semáforo a otro? No me mires, que me pongo rojo.";
+                break;
+            case 'Aldair':
+                return "Chiste: ¿Qué le dijo un cable a otro cable? Somos los intocables.";
+                break;
+            case 'Sebastián':
+                return "Chiste: ¿Qué le dice una impresora a otra? ¿Esa hoja es tuya o es impresión mía?";
+                break;
+            case 'Evelin':
+                return "Chiste: ¿Por qué los esqueletos son tan tranquilos? Porque nada les quita el sueño.";
+                break;
+        }
+  }
+ </script>
+
 </body>
 
 </html>
