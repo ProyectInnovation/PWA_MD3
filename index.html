@@ -26,9 +26,11 @@
  <form id="form" novalidate onsubmit="procesa(event)">
 
   <md-top-app-bar>
+
     <center>
      <h1>Formulario</h1>
     </center>
+
   </md-top-app-bar>
 
   <nav-tab-fixed id="tab"></nav-tab-fixed>
@@ -42,14 +44,6 @@
      <span>Integrante *</span>
      <small id="supportingGenero">Obligatorio</small>
     </span>
-   </p>
-
-   <!-- 🌍 Ícono de geolocalización funcional -->
-   <p style="display: flex; align-items: center; gap: 0.5rem;">
-     <a href="geolocalizacion.html" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
-       <span style="font-size: 1.5rem;">🌍</span>
-       <span>Geolocalización</span>
-     </a>
    </p>
 
    <p>
@@ -106,16 +100,22 @@
    switch (genero) {
             case 'Abigail':
                 return "Chiste: ¿Qué hace una abeja en el gimnasio? ¡Zumba!";
+                break;
             case 'Sherley':
                 return "Chiste: ¿Cuál es el colmo de un electricista? Que su mujer se llame Luz y sus hijos le sigan la corriente.";
+                break;
             case 'Ulises':
                 return "Chiste: ¿Qué le dice un semáforo a otro? No me mires, que me pongo rojo.";
+                break;
             case 'Aldair':
                 return "Chiste: ¿Qué le dijo un cable a otro cable? Somos los intocables.";
+                break;
             case 'Sebastián':
                 return "Chiste: ¿Qué le dice una impresora a otra? ¿Esa hoja es tuya o es impresión mía?";
+                break;
             case 'Evelin':
                 return "Chiste: ¿Por qué los esqueletos son tan tranquilos? Porque nada les quita el sueño.";
+                break;
         }
   }
  </script>
