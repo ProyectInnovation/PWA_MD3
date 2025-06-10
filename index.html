@@ -2,60 +2,62 @@
 <html lang="es" class="light dark">
 
 <head>
- <meta charset="UTF-8">
- <title>ProyectInnovation</title>
+  <meta charset="UTF-8">
+  <title>ProyectInnovation</title>
 
- <script src="js/registraServiceWorker.js"></script>
+  <script src="js/registraServiceWorker.js"></script>
 
- <meta name="viewport" content="width=device-width">
- <meta name="theme-color" content="#fffbfe">
- <link rel="icon" sizes="32x32" href="favicon.ico">
- <link rel="manifest" href="site.webmanifest">
- <script src="ungap/custom-elements.js"></script>
+  <meta name="viewport" content="width=device-width">
+  <meta name="theme-color" content="#fffbfe">
+  <link rel="icon" sizes="32x32" href="favicon.ico">
+  <link rel="manifest" href="site.webmanifest">
+  <script src="ungap/custom-elements.js"></script>
 
- <script type="module" src="js/configura.js"></script>
- <link rel="stylesheet" href="css/estilos.css">
- <link rel="stylesheet" href="css/transicion_pestanas.css">
- <link rel="expect" blocking="render" href="#navtabfixed">
- 
-<style>
-        body {
-      --font: 'Roboto', sans-serif;
-     
-      margin: 0;
-      padding: 20px;
-    }
+  <script type="module" src="js/configura.js"></script>
+
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/transicion_pestanas.css">
+
+  <link rel="stylesheet" href="css/material3.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="expect" blocking="render" href="#navtabfixed">
 
 
-  h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-    p {
-    margin: 0.5rem 0;
-  }
-
-  strong {
-    font-weight: 600;
-    color: var(--color-primary);
-  }
-</style>
 </head>
+
 
 <body>
 
-  <md-top-app-bar>
-    <center>
-     <h1>Introducción</h1>
-    </center>
-  </md-top-app-bar>
-  <nav-tab-fixed id="tab"></nav-tab-fixed>
-  <main>
-   <p>
-    En esta lección se muestra como aceder directamente a algunas funciones del dispositivo.
-   </p>
-  </main>
+  <section class="contenedor-intro">
+    <h1>Introducción</h1>
+
+    <div class="botones-funciones">
+      <a href="geolocalizacion.html" class="icono-boton">
+        <span class="material-icons">location_on</span>
+        <span>Geolocalizacion</span>
+      </a>
+
+      <a href="mCamara.html" class="icono-boton">
+        <span class="material-icons">camera</span>
+        <span>Cámara</span>
+      </a>
+
+      <a href="mBarchivos.html" class="icono-boton">
+        <span class="material-icons">folder</span>
+        <span>Archivos</span>
+      </a>
+
+      <a href="ayuda.html" class="icono-boton">
+        <span class="material-icons">help_outline</span>
+        <span>Ayuda</span>
+      </a>
+    </div>
+    </div>
+
+    <p>En esta lección se muestra como acceder directamente a algunas funciones del dispositivo.</p>
+  </section>
+
 </body>
 
 </html>

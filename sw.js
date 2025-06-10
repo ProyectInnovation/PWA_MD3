@@ -20,7 +20,7 @@ const VERSION = "1.02"
 /**
  * Nombre de la carpeta de caché.
  */
-const CACHE = "pwamd"
+const CACHE = "Geolocalizacion"
 
 /**
  * Archivos requeridos para que la aplicación funcione fuera de

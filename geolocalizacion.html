@@ -1,50 +1,58 @@
 <!DOCTYPE html>
 <html lang="es" class="light dark">
+
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width">
- <title>GPS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>GPS</title>
 
- <meta name="viewport" content="width=device-width">
- <meta name="theme-color" content="#fffbfe">
- <link rel="icon" sizes="32x32" href="favicon.ico">
- <link rel="manifest" href="site.webmanifest">
- <script src="ungap/custom-elements.js"></script>
- <script src="js/registraServiceWorker.js"></script>
- <script type="module" src="js/configura.js"></script>
- <link rel="stylesheet" href="css/estilos.css">
- <link rel="stylesheet" href="css/transicion_pestanas.css">
- <link rel="expect" blocking="render" href="#navtabfixed">
-
-  <style>
-       body {
-      --font: 'Roboto', sans-serif;
-      
-      margin: 0;
-      padding: 20px;
-    }
-    /* Estilos visuales para el contenido */
-    .card {
-      background: #fff;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+  <meta name="viewport" content="width=device-width">
+  <meta name="theme-color" content="#fffbfe">
+  <link rel="icon" sizes="32x32" href="favicon.ico">
+  <link rel="manifest" href="site.webmanifest">
+  <script src="ungap/custom-elements.js"></script>
+  <script src="js/registraServiceWorker.js"></script>
+  <script type="module" src="js/configura.js"></script>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/transicion_pestanas.css">
+  <link rel="expect" blocking="render" href="#navtabfixed">
+  <link rel="stylesheet" href="css/material3.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
-  </style>
 
 </head>
 
 <body>
-  <md-top-app-bar>
-      <center>
-        <h1>GPS</h1>
-     </center>
-  </md-top-app-bar>
 
-  <nav-tab-fixed id="tab"></nav-tab-fixed>
+
+  <center>
+    <h1>GPS</h1>
+  </center>
+
+  <div class="botones-funciones">
+    <a href="geolocalizacion.html" class="icono-boton">
+      <span class="material-icons">location_on</span>
+      <span>Geolocalizacion</span>
+    </a>
+
+    <a href="mCamara.html" class="icono-boton">
+      <span class="material-icons">camera</span>
+      <span>Cámara</span>
+    </a>
+
+    <a href="mBarchivos.html" class="icono-boton">
+      <span class="material-icons">folder</span>
+      <span>Archivos</span>
+    </a>
+
+    <a href="ayuda.html" class="icono-boton">
+      <span class="material-icons">help_outline</span>
+      <span>Ayuda</span>
+    </a>
+  </div>
+  </div>
+
   <br>
   <main>
     <div class="card">
@@ -56,18 +64,19 @@
       <output id="longitud"></output>
     </div>
   </main>
- 
 
 
 
- <script>
-  navigator.geolocation.
-   watchPosition(p => {
-    latitud.value =
-     p.coords.latitude
-    longitud.value =
-     p.coords.longitude
-   });
- </script>
+
+  <script>
+    navigator.geolocation.
+      watchPosition(p => {
+        latitud.value =
+          p.coords.latitude
+        longitud.value =
+          p.coords.longitude
+      });
+  </script>
 </body>
+
 </html>
