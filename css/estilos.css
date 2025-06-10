@@ -26,8 +26,6 @@
 @import url(../lib/css/md-tab.css);
 @import url(../lib/css/md-navigation-bar.css);
 
-
-
 html {
  /* Indica los temas del sistema operativo que son soportados. */
  color-scheme: light dark;
