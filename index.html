@@ -2,9 +2,8 @@
 <html lang="es" class="light dark">
 
 <head>
-
  <meta charset="UTF-8">
- <title>Formulario - ProyectInnovation chistes</title>
+ <title>ProyectInnovation</title>
 
  <script src="js/registraServiceWorker.js"></script>
 
@@ -18,108 +17,45 @@
  <link rel="stylesheet" href="css/estilos.css">
  <link rel="stylesheet" href="css/transicion_pestanas.css">
  <link rel="expect" blocking="render" href="#navtabfixed">
+ 
+<style>
+        body {
+      --font: 'Roboto', sans-serif;
+     
+      margin: 0;
+      padding: 20px;
+    }
 
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+    p {
+    margin: 0.5rem 0;
+  }
+
+  strong {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+</style>
 </head>
 
 <body>
 
- <form id="form" novalidate onsubmit="procesa(event)">
-
   <md-top-app-bar>
     <center>
-     <h1>Formulario</h1>
+     <h1>Introducción</h1>
     </center>
   </md-top-app-bar>
-
   <nav-tab-fixed id="tab"></nav-tab-fixed>
-
   <main>
-
    <p>
-    <span class="md-filled-text-field" accesskey="G">
-     <md-select-menu id="selectGenero" required options="opcionesDeGenero"
-       oninput="copiaMensajes()"></md-select-menu>
-     <span>Integrante *</span>
-     <small id="supportingGenero">Obligatorio</small>
-    </span>
+    En esta lección se muestra como aceder directamente a algunas funciones del dispositivo.
    </p>
-
-   <!-- 🌍 Ícono de geolocalización funcional -->
-   <p style="display: flex; align-items: center; gap: 0.5rem;">
-     <a href="geolocalizacion.html" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
-       <span style="font-size: 1.5rem;">🌍</span>
-       <span>Geolocalización</span>
-     </a>
-   </p>
-
-   <p>
-    <button class="md-filled-button" style="width: 100%;">Chiste aportado</button>
-   </p>
-
   </main>
-
-  <md-options-menu id="opcionesDeGenero" aria-label="Opciones de género">
-   <span data-value="" title="Selecciona un integrante"></span>
-   <span data-value="Abigail">Martinez Resendiz Dierene Abigail</span>
-   <span data-value="Sherley">Mendoza Garcia Sherley Lizeth</span>
-   <span data-value="Ulises">Mercado Soto Ulises</span>
-   <span data-value="Aldair">Rivera Cortes Ivan Aldair</span>
-   <span data-value="Sebastián">Santiago Pérez Sebastián</span>
-   <span data-value="Evelin">Torres Cruz Evelin</span>
-  </md-options-menu>
-
-  <nav-drw></nav-drw>
-
- </form>
-
- <script type="module">
-  import { muestraTextoDeAyuda } from "./lib/js/muestraTextoDeAyuda.js"
-  import { exportaAHtml } from "./lib/js/exportaAHtml.js"
-  import { muestraError } from "./lib/js/muestraError.js"
-
-  function copiaMensajes() {
-   muestraTextoDeAyuda(selectGenero, supportingGenero, "Obligatorio")
-  }
-  exportaAHtml(copiaMensajes)
-
-  /**
-   * @param {SubmitEvent} evt
-   */
-  function procesa(evt) {
-   evt.preventDefault()
-   try {
-    copiaMensajes()
-    if (
-     selectGenero.validity.valid) {
-     const genero = selectGenero.value
-     const resultado = recomienda(genero)
-     alert(resultado)
-    }
-   } catch (e) {
-    muestraError(e)
-   }
-  }
-  exportaAHtml(procesa)
-
-  /** @param {string} genero */
-  function recomienda(genero) {
-   switch (genero) {
-            case 'Abigail':
-                return "Chiste: ¿Qué hace una abeja en el gimnasio? ¡Zumba!";
-            case 'Sherley':
-                return "Chiste: ¿Cuál es el colmo de un electricista? Que su mujer se llame Luz y sus hijos le sigan la corriente.";
-            case 'Ulises':
-                return "Chiste: ¿Qué le dice un semáforo a otro? No me mires, que me pongo rojo.";
-            case 'Aldair':
-                return "Chiste: ¿Qué le dijo un cable a otro cable? Somos los intocables.";
-            case 'Sebastián':
-                return "Chiste: ¿Qué le dice una impresora a otra? ¿Esa hoja es tuya o es impresión mía?";
-            case 'Evelin':
-                return "Chiste: ¿Por qué los esqueletos son tan tranquilos? Porque nada les quita el sueño.";
-        }
-  }
- </script>
-
 </body>
 
 </html>
