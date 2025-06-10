@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html class="light dark">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width">
+ <title>Cámara</title>
+
+ <script src="js/registraServiceWorker.js"></script>
+
+ <meta name="viewport" content="width=device-width">
+ <meta name="theme-color" content="#fffbfe">
+ <link rel="icon" sizes="32x32" href="favicon.ico">
+ <link rel="manifest" href="site.webmanifest">
+ <script src="ungap/custom-elements.js"></script>
+
+ <script type="module" src="js/configura.js"></script>
+ <link rel="stylesheet" href="css/estilos.css">
+ <link rel="stylesheet" href="css/transicion_pestanas.css">
+ <link rel="expect" blocking="render" href="#navtabfixed">
+
+
+
+<style>
+  :root {
+    --color-primary: #6200ea;
+    --color-surface: #ffffff;
+    --color-on-surface: #333;
+    --color-border: #e0e0e0;
+    --radius: 12px;
+    --padding: 1rem;
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --font: 'Roboto', sans-serif;
+    --md-sys-motion-duration-1000: 600ms;
+  }
+
+
+
+  main {
+    view-transition-name: contenido;
+    font-family: var(--font);
+    background: var(--color-surface);
+    padding: 2rem;
+    color: var(--color-on-surface);
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin: 0.5rem 0;
+  }
+
+  strong {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 0;
+  }
+
+  menu li {
+    list-style: none;
+  }
+
+  button {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: background 0.3s ease;
+  }
+
+  button:hover {
+    background: #3700b3;
+  }
+
+  section {
+    background: #fafafa;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--padding);
+    margin: 1rem;
+    display: inline-block;
+    text-align: center;
+    box-shadow: var(--shadow);
+    min-width: 180px;
+  }
+
+  video, canvas {
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  #mensajes {
+    color: #d32f2f;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  /* View Transition Animations */
+  ::view-transition-group(contenido) {
+    animation-duration: var(--md-sys-motion-duration-1000);
+  }
+
+  html::view-transition-old(contenido) {
+    animation-name: salePorLaIzquierda;
+  }
+
+  html::view-transition-new(contenido) {
+    animation-name: entraPorLaDerecha;
+  }
+
+  @keyframes salePorLaIzquierda {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(-30px); opacity: 0; }
+  }
+
+  @keyframes entraPorLaDerecha {
+    from { transform: translateX(30px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  </style>
+
+</head>
+
+<body>  
+<main>
+    <center>
+      <h1>Cámara</h1>
+    </center>
+    <nav-tab-fixed id="tab"></nav-tab-fixed>
+
+
+    <p>  Para grabar o capturar imagen, cliquea
+      <strong>Inicia</strong>.
+    </p>
+
+    <p> Para grabar por 5 segundos cliquea
+    <strong>Graba</strong>
+    y cliquea
+    <strong>Para</strong> para detener.
+    </p>
+
+    <p>
+    Para capturar una imagen de la
+    cámara, cliquea
+    <strong>Captura</strong>.
+    </p>
+
+
+    <menu style="display: flex;  flex-wrap: wrap;  list-style: none;">
+    <li>
+    <button type="button" onclick="inicia()"> Inicia </button>
+    </li>
+    <li>
+    <button type="button" onclick="graba()">Graba </button>
+    </li>
+    <li>
+    <button type="button" onclick="para();"> Para </button>
+    </li>
+    <li>
+    <button type="button"  onclick="captura()"> Captura </button>
+    </li>
+    </menu>
+
+
+    <section style="display: inline-block;  vertical-align: top;text-align: center;">
+    <h1>Preview</h1>
+    <video id="preview" width="160" height="120" autoplay muted></video>
+    </section>
+
+
+    <section style="display: inline-block; vertical-align: top;text-align: center;">
+    <h1>Recording</h1>
+    <video id="recording" width="160" height="120" controls></video>
+    <p><a id="descarga">Descarga</a>  </p>
+    <div id="mensajes"></div>
+    </section>
+
+
+
+    <section style="display: inline-block; vertical-align: top;text-align: center;">
+    <h1>Imagen</h1>
+    <canvas id="canvas" width="160" height="120"></canvas>
+    <p> <a id="descargaImagen"> Descarga</a></p>
+
+    </section>
+
+</main>
+
+ <script>
+
+  let stream = null
+
+  let TIEMPO_DE_GRABACION = 5000
+
+  var context =
+   canvas.getContext('2d')
+
+  async function inicia() {
+   try {
+    stream = await navigator
+     .mediaDevices.getUserMedia({
+      video: true,
+      audio: true
+     })
+    preview.srcObject = stream
+    descarga.href = stream
+    preview.captureStream =
+     preview.captureStream
+     || preview.mozCaptureStream
+    await new Promise(
+     resolve =>
+      preview.onplaying = resolve)
+   } catch (e) {
+    log(e.message)
+   }
+  }
+
+  async function graba() {
+   try {
+    const recordedChunks =
+     await grabaClip(stream,
+      TIEMPO_DE_GRABACION)
+    let recordedBlob = new Blob(
+     recordedChunks,
+     { type: "video/webm" })
+    recording.src =
+     URL.createObjectURL(
+      recordedBlob)
+    descarga.href = recording.src
+    descarga.download =
+     "RecordedVideo.webm"
+
+    log("Exitosamente grabados "
+     + recordedBlob.size
+     + " bytes de "
+     + recordedBlob.type
+     + " media.")
+   } catch (e) {
+    log(e.message)
+   }
+  }
+
+  function para() {
+   detiene(preview.srcObject)
+  }
+
+  function captura() {
+   context.drawImage(preview,
+    0, 0, 160, 120)
+   descargaImagen.href =
+    canvas.toDataURL('image/jpeg')
+   descargaImagen.download =
+    "imagen.jpg"
+  }
+
+  function grabaClip(stream,
+   milisegundos) {
+   let recorder =
+    new MediaRecorder(stream)
+   let data = []
+   recorder.ondataavailable =
+    event => data.push(event.data)
+   recorder.start()
+   log(recorder.state
+    + " durante "
+    + (milisegundos / 1000)
+    + " segundos…")
+   let detenido = new Promise(
+    (resolve, reject) => {
+     recorder.onstop = resolve
+     recorder.onerror =
+      event => reject(event.name)
+    })
+   let grabado =
+    espera(milisegundos)
+     .then(() => recorder.state
+      === "recording"
+      && recorder.stop()
+     )
+
+   return Promise.all([
+    detenido,
+    grabado
+   ])
+    .then(() => data)
+  }
+
+  function detiene(stream) {
+   stream.getTracks().forEach(
+    track => track.stop())
+  }
+
+  function log(msg) {
+   mensajes.innerHTML +=
+    msg + "<br>"
+  }
+
+  function espera(milisegundos) {
+   return new Promise(
+    resolve => setTimeout(
+     resolve, milisegundos))
+  }
+
+ </script>
+
+</body>
+
+</html>

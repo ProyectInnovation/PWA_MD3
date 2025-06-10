@@ -28,6 +28,9 @@ const CACHE = "pwamd"
  */
 const ARCHIVOS = [
  "ayuda.html",
+ "geolocalizacion.html",
+ "mBarchivos.html",
+ "mCamara.html",
  "favicon.ico",
  "index.html",
  "site.webmanifest",

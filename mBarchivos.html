@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es" class="light dark">
+
+<head>
+
+ <meta charset="UTF-8">
+ <meta name="viewport"
+   content="width=device-width">
+
+ <title>Archivos y Cámara</title>
+ <script src="js/registraServiceWorker.js"></script>
+
+ <meta name="viewport" content="width=device-width">
+ <meta name="theme-color" content="#fffbfe">
+ <link rel="icon" sizes="32x32" href="favicon.ico">
+ <link rel="manifest" href="site.webmanifest">
+ <script src="ungap/custom-elements.js"></script>
+
+ <script type="module" src="js/configura.js"></script>
+ <link rel="stylesheet" href="css/estilos.css">
+ <link rel="stylesheet" href="css/transicion_pestanas.css">
+ <link rel="expect" blocking="render" href="#navtabfixed">
+  <style>
+
+
+    body {
+      --font: 'Roboto', sans-serif;
+     
+      margin: 0;
+      padding: 20px;
+    }
+
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+    p {
+    margin: 0.5rem 0;
+  }
+
+  strong {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+    main {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .material-symbols-outlined {
+      margin-right: 10px;
+      font-size: 24px;
+      color: #555;
+    }
+
+    input[type="file"] {
+      margin-left: auto;
+    }
+
+    p {
+      margin: 0;
+    }
+    </style>
+</head>
+
+<body>
+  <md-top-app-bar>
+      <center>
+       <h1>Archivos y Cámara</h1>
+    </center>
+  </md-top-app-bar>
+
+  <nav-tab-fixed id="tab"></nav-tab-fixed>
+<br>
+<main>
+  
+    <p>
+      <label>
+        <span class="material-symbols-outlined">photo_camera</span>
+        Foto de Móvil
+        <input type="file" accept="image/*" capture="camera">
+      </label>
+    </p>
+
+    <p>
+      <label>
+        <span class="material-symbols-outlined">videocam</span>
+        Video de Móvil
+        <input type="file" accept="video/*" capture>
+      </label>
+    </p>
+
+    <p>
+      <label>
+        <span class="material-symbols-outlined">description</span>
+        Archivo
+        <input type="file">
+      </label>
+    </p>
+ 
+</main>
+
+
+
+
+
+</body>
+
+</html>
